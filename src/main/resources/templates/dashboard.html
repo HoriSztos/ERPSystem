@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<header>
+  <h1>Witaj, <span th:text="${username}"></span>!</h1>
+  <a href="/logout">Wyloguj się</a>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="/finance">Finanse</a></li>
+    <li><a href="/hr">HR</a></li>
+    <li><a href="/warehouse">Magazyn i Dostawy</a></li>
+    <li><a href="/calendar">Kalendarz i Grafik</a></li>
+    <li><a href="/services">Usługi</a></li>
+  </ul>
+</nav>
+
+<main>
+  <h2>Wybierz moduł</h2>
+  <p>Wybierz jedną z opcji w menu, aby rozpocząć pracę.</p>
+</main>
+</body>
+</html>

@@ -2,5 +2,5 @@ package com.example.erpsystem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SprzedazRepozytorium extends JpaRepository<Sprzedaz, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 }
