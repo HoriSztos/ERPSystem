@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ERP System - Home</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>Witamy w systemie ERP</h1>
+  <p>Proszę się zalogować, aby uzyskać dostęp do swojego konta.</p>
+</header>
+
+<main>
+  <!-- Przycisk logowania, który przekierowuje użytkownika do strony logowania -->
+  <a th:href="@{/login}" class="button">Zaloguj się</a>
+</main>
+
+<footer>
+  <p>&copy; 2024 ERP System. Wszystkie prawa zastrzeżone.</p>
+</footer>
+
+</body>
+</html>
