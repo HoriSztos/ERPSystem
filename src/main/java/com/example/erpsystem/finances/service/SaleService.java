@@ -1,5 +1,7 @@
-package com.example.erpsystem;
+package com.example.erpsystem.finances.service;
 
+import com.example.erpsystem.finances.model.Sale;
+import com.example.erpsystem.finances.repository.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

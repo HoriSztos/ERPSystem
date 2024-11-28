@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Finance Module</title>
+</head>
+<body>
+<h1>Financial Summary</h1>
+<p>Daily Profit: <span th:text="${dailyProfit}"></span></p>
+<h2>Recent Transactions</h2>
+<ul>
+    <li th:each="transaction : ${transactions}">
+        <span th:text="${transaction.date}"></span> -
+        <span th:text="${transaction.description}"></span> -
+        <span th:text="${transaction.amount}"></span>
+    </li>
+</ul>
+</body>
+</html>

@@ -11,19 +11,18 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User createUser(String username, String password, String roleName) {
-        Role role = roleRepository.findByName(roleName)
-                .orElseThrow(() -> new IllegalArgumentException("Role not found: " + roleName));
+    public void createUser(String username, String password, String roleName) {
+        if (roleName == null) {
+            throw new RuntimeException("Role '" + roleName + "' not found!");
+        }
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
-        user.setRole(role);
-        return userRepository.save(user);
+        user.setRole(roleName);
+
+        userRepository.save(user);
     }
 }

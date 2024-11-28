@@ -1,5 +1,6 @@
-package com.example.erpsystem;
+package com.example.erpsystem.model;
 
+import com.example.erpsystem.finances.model.Sale;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

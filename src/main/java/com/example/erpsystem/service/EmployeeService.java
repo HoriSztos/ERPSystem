@@ -1,5 +1,7 @@
-package com.example.erpsystem;
+package com.example.erpsystem.service;
 
+import com.example.erpsystem.model.Employee;
+import com.example.erpsystem.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

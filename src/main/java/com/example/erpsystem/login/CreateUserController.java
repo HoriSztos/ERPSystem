@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class UserController {
+public class CreateUserController {
 
     @Autowired
     private UserService userService;
@@ -22,6 +22,6 @@ public class UserController {
                              @RequestParam String password,
                              @RequestParam String role) {
         userService.createUser(username, password, role);
-        return "Utworzono pomyślnie.";
+        return "result";
     }
 }

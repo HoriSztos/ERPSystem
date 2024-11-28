@@ -3,24 +3,28 @@ package com.example.erpsystem.login;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id_user;
 
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @Column(name="role")
+    private String role;
 
 //konstruktory
 
     public User() {
     }
 
-    public User(Long id_user, String username, String password, Role role) {
+    public User(Long id_user, String username, String password, String role) {
         this.id_user = id_user;
         this.username = username;
         this.password = password;
@@ -41,7 +45,7 @@ public class User {
         return password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
@@ -59,7 +63,7 @@ public class User {
         this.password = password;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

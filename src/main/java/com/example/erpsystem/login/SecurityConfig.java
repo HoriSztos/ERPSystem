@@ -1,8 +1,11 @@
 package com.example.erpsystem.login;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +21,9 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfig {
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     private final DataSource dataSource;
 
     public SecurityConfig(DataSource dataSource) {
@@ -26,9 +32,9 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        return http
                 .authorizeHttpRequests(auth -> auth
-                                .requestMatchers( "/login").permitAll()
+                        .requestMatchers( "/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -38,9 +44,7 @@ public class SecurityConfig {
                 )
                 .logout(logoutConfigurer -> logoutConfigurer
                         .logoutSuccessUrl("/") // Przekierowanie po wylogowaniu na stronę główną
-                );
-
-        return http.build();
+                ).build();
     }
 
     @Bean
@@ -61,5 +65,13 @@ public class SecurityConfig {
     @Bean
     AuthenticationSuccessHandler authenticationSuccessHandler() {
         return new CustomAuthenticationSuccessHandler();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
     }
 }

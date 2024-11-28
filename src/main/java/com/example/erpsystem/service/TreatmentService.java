@@ -1,5 +1,7 @@
-package com.example.erpsystem;
+package com.example.erpsystem.service;
 
+import com.example.erpsystem.model.Treatment;
+import com.example.erpsystem.repository.TreatmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

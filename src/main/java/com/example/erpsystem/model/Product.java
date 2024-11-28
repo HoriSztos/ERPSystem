@@ -1,4 +1,4 @@
-package com.example.erpsystem;
+package com.example.erpsystem.model;
 
 import jakarta.persistence.*;
 

@@ -11,19 +11,17 @@ public class AdminService {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public void createUser(String username, String password, String roleName) {
-        Role role = roleRepository.findByName(roleName)
-                .orElseThrow(() -> new RuntimeException("Role not found"));
+        if (roleName == null) {
+            throw new RuntimeException("Role '" + roleName + "' not found!");
+        }
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
-        user.setRole(role);
+        user.setRole(roleName);
 
         userRepository.save(user);
     }
