@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kalendarz Wizyt</title>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+</head>
+<body>
+<h1>Kalendarz Wizyt</h1>
+
+<!-- FullCalendar -->
+<div id="calendar"></div>
+
+<h2>Lista Wizyt</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Data i Czas</th>
+        <th>Tytuł</th>
+        <th>Opis</th>
+        <th>Uczestnik</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.startTime} + ' - ' + ${appointment.endTime}"></td>
+        <td th:text="${appointment.title}"></td>
+        <td th:text="${appointment.description}"></td>
+        <td th:text="${appointment.participant}"></td>
+        <td>
+            <a th:href="@{'/calendar/edit/' + ${appointment.id}}">Edytuj</a> |
+            <form th:action="@{'/calendar/delete/' + ${appointment.id}}" method="post" style="display:inline;">
+                <button type="submit">Usuń</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/calendar/add">
+    <button>Dodaj Nową Wizytę</button>
+</a>
+
+<script th:inline="javascript">
+    // Inicjalizacja FullCalendar
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: '/calendar/events',
+            eventClick: function(info) {
+                alert('Tytuł: ' + info.event.title + '\nOpis: ' + info.event.extendedProps.description);
+                window.location.href = '/calendar/edit/' + info.event.id;
+            }
+        });
+        calendar.render();
+    });
+</script>
+</body>
+</html>

@@ -4,9 +4,10 @@
     <title>Finance Module</title>
 </head>
 <body>
-<h1>Financial Summary</h1>
-<p>Daily Profit: <span th:text="${dailyProfit}"></span></p>
-<h2>Recent Transactions</h2>
+<h1>Podsumowanie finansowe</h1>
+<p>Dzienny zysk: <span th:text="${dailyProfit}"></span></p>
+
+<h2>Ostatnie transakcje:</h2>
 <ul>
     <li th:each="transaction : ${transactions}">
         <span th:text="${transaction.date}"></span> -
@@ -14,5 +15,21 @@
         <span th:text="${transaction.amount}"></span>
     </li>
 </ul>
+
+<!-- Navigation Buttons -->
+<div>
+    <a href="/finance/add">
+        <button>Dodaj nową transakcję</button>
+    </a>
+    <a href="/finance/transactions">
+        <button>Zobacz wszystkie transakcje</button>
+    </a>
+    <a href="/finance/reports">
+        <button>Raporty</button>
+    </a>
+    <a href="/finance">
+        <button> Powrót do strony głównej </button>
+    </a>
+</div>
 </body>
 </html>

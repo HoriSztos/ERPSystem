@@ -22,7 +22,7 @@ public class TransactionController {
     public String home(Model model) {
         LocalDate today = LocalDate.now();
         model.addAttribute("dailyProfit", transactionService.calculateDailyProfit(today));
-        model.addAttribute("transactions", transactionService.getAllTransactions());
+        model.addAttribute("transactions", transactionService.getRecentTransactions());
         return "finance_home";
     }
 
@@ -33,12 +33,26 @@ public class TransactionController {
     }
 
     @GetMapping("/reports")
-    public String reports(@RequestParam(required = false) String period, Model model) {
-        // Example logic for period (WEEK, MONTH, YEAR)
-        LocalDate startDate = LocalDate.now().minusDays(7); // Example for week
+    public String reports(@RequestParam(required = false, defaultValue = "WEEK") String period, Model model) {
+        LocalDate startDate;
         LocalDate endDate = LocalDate.now();
+
+        switch (period.toUpperCase()) {
+            case "MONTH":
+                startDate = endDate.minusMonths(1);
+                break;
+            case "YEAR":
+                startDate = endDate.minusYears(1);
+                break;
+            case "WEEK":
+            default:
+                startDate = endDate.minusWeeks(1);
+                break;
+        }
+
         List<Transaction> transactions = transactionService.getTransactionsForPeriod(startDate, endDate);
         model.addAttribute("transactions", transactions);
+        model.addAttribute("period", period); // Dodatkowy atrybut do przekazania wybranego okresu
         return "finance_reports";
     }
 
