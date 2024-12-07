@@ -9,7 +9,7 @@
   <input type="hidden" id="id" name="id" th:value="${appointment.id}">
 
   <label for="name">Nazwa:</label>
-  <input type="text" id="name" name="name" th:value="${appointment.title}" required>
+  <input type="text" id="name" name="name" th:value="${appointment.name}" required>
   <br>
 
   <label for="description">Opis:</label>
@@ -17,15 +17,15 @@
   <br>
 
   <label for="startTime">Data i czas rozpoczęcia:</label>
-  <input type="datetime-local" id="startTime" name="startTime" th:value="${#dates.format(appointment.startTime, 'yyyy-MM-dd\'T\'HH:mm')}" required>
+  <input type="datetime-local" id="startTime" name="startTime" th:value="${appointment.startTime}" required>
   <br>
 
   <label for="endTime">Data i czas zakończenia:</label>
-  <input type="datetime-local" id="endTime" name="endTime" th:value="${#dates.format(appointment.endTime, 'yyyy-MM-dd\'T\'HH:mm')}" required>
+  <input type="datetime-local" id="endTime" name="endTime" th:value="${appointment.endTime}" required>
   <br>
 
   <label for="client">Klient:</label>
-  <input type="text" id="client" name="client" th:value="${appointment.participant}" required>
+  <input type="text" id="client" name="client" th:value="${appointment.client}" required>
   <br>
 
   <button type="submit">Zapisz zmiany</button>

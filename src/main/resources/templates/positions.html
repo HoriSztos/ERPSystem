@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Lista Stanowisk</title>
+</head>
+<body>
+<h1>Lista Stanowisk</h1>
+<a href="/hr/positions/add">
+  <button>Dodaj Stanowisko</button>
+</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nazwa</th>
+    <th>Opis</th>
+    <th>Akcje</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="position : ${positions}">
+    <td th:text="${position.id}"></td>
+    <td th:text="${position.name}"></td>
+    <td th:text="${position.description}"></td>
+    <td>
+      <a th:href="@{'/hr/positions/edit/' + ${position.id}}">Edytuj</a> |
+      <form th:action="@{'/hr/positions/delete/' + ${position.id}}" method="post" style="display:inline;">
+        <button type="submit">Usuń</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

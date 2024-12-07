@@ -1,4 +1,4 @@
-package com.example.erpsystem.model;
+package com.example.erpsystem.treatments.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -9,17 +9,24 @@ import java.time.LocalTime;
 public class Treatment { //Uzycie treatment zamiast service z powodu konfliktu z adnotacją Service
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_treatment;
+    private Long id;
 
+    @Column(name="name")
     private String name;
+
+    @Column(name="description")
     private String description;
+
+    @Column(name="duration")
     private LocalTime duration;
+
+    @Column(name="price")
     private BigDecimal price;
 
     //konstruktory
 
-    public Treatment(Long id_treatment, String name, String description, LocalTime duration, BigDecimal price) {
-        this.id_treatment = id_treatment;
+    public Treatment(Long id, String name, String description, LocalTime duration, BigDecimal price) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -31,8 +38,8 @@ public class Treatment { //Uzycie treatment zamiast service z powodu konfliktu z
 
     //gettery
 
-    public Long getId_treatment() {
-        return id_treatment;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -52,8 +59,8 @@ public class Treatment { //Uzycie treatment zamiast service z powodu konfliktu z
     }
 
     //settery
-    public void setId_treatment(Long id_service) {
-        this.id_treatment = id_service;
+    public void setId(Long id_service) {
+        this.id = id_service;
     }
 
     public void setName(String name) {

@@ -8,6 +8,12 @@
 <h1>Kalendarz Wizyt</h1>
 
 <!-- FullCalendar -->
+<style>
+    #calendar {
+        height: 80vh;
+        width: 90vw;
+    }
+</style>
 <div id="calendar"></div>
 
 <h2>Lista Wizyt</h2>
@@ -15,18 +21,18 @@
     <thead>
     <tr>
         <th>Data i Czas</th>
-        <th>Tytuł</th>
+        <th>Nazwa</th>
         <th>Opis</th>
-        <th>Uczestnik</th>
+        <th>Klient</th>
         <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="appointment : ${appointments}">
         <td th:text="${appointment.startTime} + ' - ' + ${appointment.endTime}"></td>
-        <td th:text="${appointment.title}"></td>
+        <td th:text="${appointment.name}"></td>
         <td th:text="${appointment.description}"></td>
-        <td th:text="${appointment.participant}"></td>
+        <td th:text="${appointment.client}"></td>
         <td>
             <a th:href="@{'/calendar/edit/' + ${appointment.id}}">Edytuj</a> |
             <form th:action="@{'/calendar/delete/' + ${appointment.id}}" method="post" style="display:inline;">
@@ -47,12 +53,17 @@
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            events: '/calendar/events',
-            eventClick: function(info) {
-                alert('Tytuł: ' + info.event.title + '\nOpis: ' + info.event.extendedProps.description);
-                window.location.href = '/calendar/edit/' + info.event.id;
+            locale: 'pl',
+            firstDay: 1,
+            events: '/calendar/events', // Pobranie wizyt
+            eventDisplay: 'block',
+            eventTimeFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
             }
         });
+
         calendar.render();
     });
 </script>

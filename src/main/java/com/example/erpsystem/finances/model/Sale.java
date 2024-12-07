@@ -1,6 +1,6 @@
 package com.example.erpsystem.finances.model;
 import com.example.erpsystem.model.Client;
-import com.example.erpsystem.model.Employee;
+import com.example.erpsystem.hr.model.Employee;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

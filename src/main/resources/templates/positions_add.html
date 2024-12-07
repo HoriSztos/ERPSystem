@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Dodaj Stanowisko</title>
+</head>
+<body>
+<h1>Dodaj Stanowisko</h1>
+<form th:action="@{/hr/positions/add}" method="post" th:object="${position}">
+  <label for="name">Nazwa Stanowiska:</label>
+  <input type="text" id="name" name="name" th:text="${position.name}" required>
+  <br>
+
+  <label for="description">Opis Stanowiska:</label>
+  <textarea id="description" name="description" th:text="${position.description}"></textarea>
+  <br>
+
+  <button type="submit">Dodaj Stanowisko</button>
+</form>
+<a href="/hr/positions">
+  <button>Anuluj</button>
+</a>
+</body>
+</html>

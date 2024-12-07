@@ -1,38 +1,45 @@
-package com.example.erpsystem.model;
+package com.example.erpsystem.hr.model;
 
-import com.example.erpsystem.finances.model.Sale;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name="employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_employee;
+    private Long id;
 
+    @Column(name="name")
     private String name;
+    @Column(name="surname")
     private String surname;
-    private String position;
+    @Column(name="email")
     private String email;
+    @Column(name="phone_number")
     private String phone_number;
+    @Column(name="date_of_employment")
     private LocalDate date_of_employment;
+    @Column(name="salary")
+    private Double salary;
 
-@OneToMany(mappedBy = "employee")
-    private List<Sale> sale;
+    @ManyToOne
+    @JoinColumn(name = "position_id")
+    private Position position;
+
 
 
 //konstruktory
-    public Employee(Long id_employee, String name, String surname, String position, String email, String phone_number, LocalDate date_of_employment) {
-        this.id_employee = id_employee;
+    public Employee(Long id, String name, String surname, Position position, String email, String phone_number, LocalDate date_of_employment, Double salary) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.position = position;
         this.email = email;
         this.phone_number = phone_number;
         this.date_of_employment = date_of_employment;
+        this.salary = salary;
     }
 
     public Employee() {
@@ -40,8 +47,8 @@ public class Employee {
 //gettery
 
 
-    public Long getId_employee() {
-        return id_employee;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -52,7 +59,7 @@ public class Employee {
         return surname;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
@@ -68,14 +75,13 @@ public class Employee {
         return date_of_employment;
     }
 
-    public List<Sale> getSale() {
-        return sale;
-    }
-//settery
+    public Double getSalary() { return salary; }
 
 
-    public void setId_employee(Long id_employee) {
-        this.id_employee = id_employee;
+    //settery
+
+    public void setId(Long id_employee) {
+        this.id = id_employee;
     }
 
     public void setName(String name) {
@@ -86,7 +92,7 @@ public class Employee {
         this.surname = surname;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -102,7 +108,6 @@ public class Employee {
         this.date_of_employment = date_of_employment;
     }
 
-    public void setSale(List<Sale> sale) {
-        this.sale = sale;
-    }
+    public void setSalary(Double salary) {}
+
 }

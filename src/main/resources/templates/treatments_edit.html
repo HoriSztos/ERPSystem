@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edytuj Usługę</title>
+</head>
+<body>
+<h1>Edytuj Usługę</h1>
+
+<form th:action="@{/treatments/edit}" method="post">
+  <!-- Pole ID jest ukryte, aby nie można go było zmienić -->
+  <input type="hidden" id="id_treatment" name="id_treatment" th:value="${treatment.id}">
+
+  <label for="name">Nazwa:</label>
+  <input type="text" id="name" name="name" th:value="${treatment.name}" required>
+  <br>
+
+  <label for="description">Opis:</label>
+  <textarea id="description" name="description" th:text="${treatment.description}"></textarea>
+  <br>
+
+  <label for="duration">Czas Trwania:</label>
+  <input type="time" id="duration" name="duration" th:value="${treatment.duration}" required>
+  <br>
+
+  <label for="price">Cena:</label>
+  <input type="number" id="price" name="price" step="0.01" th:value="${treatment.price}" required>
+  <br>
+
+  <button type="submit">Zapisz Zmiany</button>
+</form>
+
+<a href="/treatments">
+  <button>Anuluj</button>
+</a>
+</body>
+</html>

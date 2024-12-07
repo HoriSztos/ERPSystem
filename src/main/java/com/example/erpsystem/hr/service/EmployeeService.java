@@ -1,7 +1,7 @@
-package com.example.erpsystem.service;
+package com.example.erpsystem.hr.service;
 
-import com.example.erpsystem.model.Employee;
-import com.example.erpsystem.repository.EmployeeRepository;
+import com.example.erpsystem.hr.model.Employee;
+import com.example.erpsystem.hr.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +17,15 @@ public class EmployeeService {
     public List<Employee> getAllEmployees(){
         return employeeRepository.findAll();
     }
+
     public Employee  getEmployeeById (Long id){
         return employeeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Pracownik nie znaleziony"));
     }
+
     public Employee saveEmployee(Employee employee){
         return employeeRepository.save(employee);
     }
+
     public void deleteEmployee(Long id){
         employeeRepository.deleteById(id);
     }

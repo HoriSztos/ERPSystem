@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Magazyn</title>
+</head>
+<body>
+<h1>Lista Produktów</h1>
+
+<!-- Sekcja ostrzeżeń -->
+<h2>Ostrzeżenia</h2>
+<ul>
+    <li th:if="${expiringProducts.isEmpty()}">Brak produktów z krótkim terminem ważności.</li>
+    <li th:each="product : ${expiringProducts}">
+        Produkt <span th:text="${product.name}"></span> straci ważność <span th:text="${product.expiration_date}"></span>.
+    </li>
+</ul>
+
+
+<a href="/inventory/add">
+    <button>Dodaj Produkt</button>
+</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Cena Zakupu</th>
+        <th>Cena Sprzedaży</th>
+        <th>Ilość</th>
+        <th>Data Ważności</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.purchase_price}"></td>
+        <td th:text="${product.sale_price}"></td>
+        <td th:text="${product.stock}"></td>
+        <td th:text="${product.expiration_date}"></td>
+        <td>
+            <a th:href="@{'/inventory/edit/' + ${product.id}}">Edytuj</a> |
+            <a th:href="@{'/inventory/delete/' + ${product.id}}">Usuń</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

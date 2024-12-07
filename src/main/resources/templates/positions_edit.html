@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edytuj Stanowisko</title>
+</head>
+<body>
+<h1>Edytuj Stanowisko</h1>
+<form th:action="@{/hr/positions/edit}" method="post">
+  <input type="hidden" id="id" name="id" th:value="${position.id}">
+
+  <label for="name">Nazwa Stanowiska:</label>
+  <input type="text" id="name" name="name" th:value="${position.name}" required>
+  <br>
+
+  <label for="description">Opis Stanowiska:</label>
+  <textarea id="description" name="description" th:text="${position.description}"></textarea>
+  <br>
+
+  <button type="submit">Zapisz Zmiany</button>
+</form>
+<a href="/hr/positions">
+  <button>Anuluj</button>
+</a>
+</body>
+</html>
