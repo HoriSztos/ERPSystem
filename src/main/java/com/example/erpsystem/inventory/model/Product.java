@@ -29,8 +29,12 @@ public class Product {
     @Column(name="expiration_date")
     private LocalDate expirationDate;
 
+    @Column(name = "minimum_stock")
+    private int minimumStock;
+
+
     //konstruktory
-    public Product(Long id, String name, String description, float purchase_price, float sale_price, int stock, LocalDate expiration_date) {
+    public Product(Long id, String name, String description, float purchase_price, float sale_price, int stock, LocalDate expiration_date, int minimumStock) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,6 +42,7 @@ public class Product {
         this.sale_price = sale_price;
         this.stock = stock;
         this.expirationDate = expiration_date;
+        this.minimumStock = minimumStock;
     }
 
     public Product() {
@@ -71,6 +76,8 @@ public class Product {
 
     public LocalDate getExpiration_date() {return expirationDate;}
 
+    public int getMinimumStock() { return minimumStock; }
+
     //settery
 
     public void setId(Long id) {
@@ -99,5 +106,6 @@ public class Product {
 
     public void setExpiration_date(LocalDate expiration_date) {this.expirationDate = expiration_date;}
 
+    public void setMinimumStock(int minimumStock) { this.minimumStock = minimumStock;}
 
 }

@@ -5,16 +5,21 @@
 </head>
 <body>
 <h1>Lista Pracowników</h1>
+
 <a href="/hr/employees/add">
     <button>Dodaj Pracownika</button>
 </a>
+
 <table border="1">
     <thead>
     <tr>
+        <th>ID</th>
         <th>Imię</th>
         <th>Nazwisko</th>
         <th>Email</th>
+        <th>Telefon</th>
         <th>Stanowisko</th>
+        <th>Data Zatrudnienia</th>
         <th>Wynagrodzenie</th>
         <th>Akcje</th>
     </tr>
@@ -24,7 +29,9 @@
         <td th:text="${employee.name}"></td>
         <td th:text="${employee.surname}"></td>
         <td th:text="${employee.email}"></td>
+        <td th:text="${employee.phone_number}"></td>
         <td th:text="${employee.position.name}"></td>
+        <td th:text="${employee.date_of_employment}"></td>
         <td th:text="${employee.salary}"></td>
         <td>
             <a th:href="@{'/hr/employees/edit/' + ${employee.id}}">Edytuj</a> |
@@ -33,7 +40,13 @@
             </form>
         </td>
     </tr>
+
     </tbody>
 </table>
+<div>
+    <a href="/dashboard">
+        <button>Powrót do strony głównej</button>
+    </a>
+</div>
 </body>
 </html>

@@ -21,15 +21,26 @@ public class InventoryController {
     private ProductRepository productRepository;
 
     @GetMapping
-    public String getInventory(Model model) {
-        // Pobranie listy wszystkich produktów
-        List<Product> products = productService.getAllProducts();
+    public String getInventory(
+            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "sortByStock", required = false, defaultValue = "false") boolean sortByStock,
+            Model model) {
 
-        // Pobranie produktów z krótkim terminem ważności (7 dni)
+        List<Product> products;
+        if (search != null && !search.isEmpty()) {
+            products = productService.searchProductsByName(search);
+        } else if (sortByStock) {
+            products = productService.getAllProductsSortedByStock();
+        } else {
+            products = productService.getAllProducts();
+        }
+
         List<Product> expiringProducts = productService.getProductsExpiringSoon(7);
+        List<Product> lowStockProducts = productService.getProductsBelowMinimumStock();
 
         model.addAttribute("products", products);
         model.addAttribute("expiringProducts", expiringProducts);
+        model.addAttribute("lowStockProducts", lowStockProducts);
         return "inventory";
     }
 

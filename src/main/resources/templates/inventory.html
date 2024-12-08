@@ -14,11 +14,28 @@
         Produkt <span th:text="${product.name}"></span> straci ważność <span th:text="${product.expiration_date}"></span>.
     </li>
 </ul>
+<ul>
+    <li th:if="${lowStockProducts.isEmpty()}">Brak produktów o niskim stanie magazynowym.</li>
+    <li th:each="product : ${lowStockProducts}">
+        Produkt <span th:text="${product.name}"></span> ma ilość <span th:text="${product.stock}"></span>, co jest poniżej minimum (<span th:text="${product.minimumStock}"></span>).
+    </li>
+</ul>
 
 
 <a href="/inventory/add">
     <button>Dodaj Produkt</button>
 </a>
+<div>
+    <form th:action="@{/inventory}" method="get">
+        <label for="search">Szukaj produktu:</label>
+        <input type="text" id="search" name="search" placeholder="Nazwa produktu">
+        <button type="submit">Szukaj</button>
+    </form>
+
+    <form th:action="@{/inventory}" method="get">
+        <button type="submit" name="sortByStock" value="true">Sortuj po ilości</button>
+    </form>
+</div>
 
 <table border="1">
     <thead>
@@ -49,5 +66,10 @@
     </tr>
     </tbody>
 </table>
+<div>
+    <a href="/dashboard">
+        <button>Powrót do strony głównej</button>
+    </a>
+</div>
 </body>
 </html>

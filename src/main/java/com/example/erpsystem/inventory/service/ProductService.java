@@ -40,4 +40,16 @@ public class ProductService {
         LocalDate threshold = today.plusDays(days);
         return productRepository.findByExpirationDateBetween(today, threshold);
     }
+
+    public List<Product> getProductsBelowMinimumStock() {
+        return productRepository.findByStockLessThanMinimumStock();
+    }
+
+    public List<Product> getAllProductsSortedByStock() {
+        return productRepository.findAllByOrderByStockAsc();
+    }
+
+    public List<Product> searchProductsByName(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
+    }
 }

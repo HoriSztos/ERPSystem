@@ -108,6 +108,5 @@ public class Employee {
         this.date_of_employment = date_of_employment;
     }
 
-    public void setSalary(Double salary) {}
-
+    public void setSalary(Double salary) { this.salary = salary; }
 }
