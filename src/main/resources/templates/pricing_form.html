@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Wycena Usług</title>
+</head>
+<body>
+<h1>Formularz Wyceny Usług</h1>
+
+<form th:action="@{/pricing/calculate}" method="post">
+  <fieldset>
+    <legend>Elementy Wyceny</legend>
+    <label for="businessOperating">Koszty działalności gospodarczej:</label>
+    <input type="number" id="businessOperating" name="businessOperating" step="0.01" required>
+    <br>
+
+    <label for="employees">Koszty pracowników:</label>
+    <input type="number" id="employees" name="employees" step="0.01" required>
+    <br>
+
+    <label for="equipment">Koszty wyposażenia:</label>
+    <input type="number" id="equipment" name="equipment" step="0.01" required>
+    <br>
+
+    <label for="products">Koszty produktów:</label>
+    <input type="number" id="products" name="products" step="0.01" required>
+    <br>
+
+    <label for="training">Koszty szkoleń:</label>
+    <input type="number" id="training" name="training" step="0.01" required>
+    <br>
+
+    <label for="income">Zysk netto:</label>
+    <input type="number" id="income" name="income" step="0.01" required>
+    <br>
+
+    <label for="taxes">Podatki:</label>
+    <input type="number" id="taxes" name="taxes" step="0.01" required>
+  </fieldset>
+
+  <fieldset>
+    <legend>Dane Wyceny</legend>
+    <label for="manHours">Liczba roboczogodzin:</label>
+    <input type="number" id="manHours" name="manHours" value="1" required>
+  </fieldset>
+
+  <button type="submit">Oblicz Wyceny</button>
+</form>
+
+<a href="/dashboard">
+  <button>Powrót</button>
+</a>
+</body>
+</html>

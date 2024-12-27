@@ -13,8 +13,11 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_sale;
 
+    @Column(name="date_of_sale")
     private LocalDate date_of_sale;
+    @Column(name="payment_method")
     private String payment_method;
+    @Column(name="total")
     private BigDecimal total;
 
     @ManyToOne
