@@ -23,7 +23,18 @@
   <br>
 
   <label for="client">Klient:</label>
-  <input type="text" id="client" name="client" required>
+  <input type="text" id="client" name="client" >
+  <br>
+
+  <label for="treatment">Usługa:</label>
+  <select id="treatment" name="treatment" th:field="*{treatment}">
+    <option value="">-- Wybierz usługę --</option>
+    <option th:each="treatment : ${treatmentList}"
+            th:value="${treatment.id}"
+            th:text="${treatment.name}"
+            th:selected="${appointment?.treatment?.id == treatment?.id}">
+    </option>
+  </select>
   <br>
 
   <button type="submit">Zapisz</button>

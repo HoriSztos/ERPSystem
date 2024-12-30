@@ -1,5 +1,6 @@
 package com.example.erpsystem.calendar.model;
 
+import com.example.erpsystem.treatments.model.Treatment;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,10 @@ public class Appointment {
     @Column(name = "client")
     private String client;
 
+    @ManyToOne
+    @JoinColumn(name = "treatment_id", nullable = false)
+    private Treatment treatment;
+
 
     //gettery
 
@@ -53,6 +58,9 @@ public class Appointment {
 
     public String getClient() {
         return client;
+    }
+    public Treatment getTreatment() {
+        return treatment;
     }
 
     //settery
@@ -81,16 +89,21 @@ public class Appointment {
         this.client = client;
     }
 
+    public void setTreatment(Treatment treatment) {
+        this.treatment = treatment;
+    }
+
     //konstruktory
 
 
-    public Appointment(Long id, String name, String description, LocalDateTime startTime, LocalDateTime endTime, String client) {
+    public Appointment(Long id, String name, String description, LocalDateTime startTime, LocalDateTime endTime, String client, Treatment treatment) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.client = client;
+        this.treatment = treatment;
     }
 
     public Appointment() {

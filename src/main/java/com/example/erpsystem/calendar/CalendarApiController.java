@@ -30,6 +30,7 @@ public class CalendarApiController {
             event.put("end", appointment.getEndTime());
             event.put("description", appointment.getDescription());
             event.put("client", appointment.getClient());
+            event.put("treatment", appointment.getTreatment());
             return event;
         }).toList();
     }

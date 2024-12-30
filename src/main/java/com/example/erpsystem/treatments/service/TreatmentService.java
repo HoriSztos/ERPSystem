@@ -29,4 +29,8 @@ public class TreatmentService {
     public void deleteService(Long id){
         treatmentRepository.deleteById(id);
     }
+
+    public List<Treatment> findAll() {
+        return treatmentRepository.findAll();
+    }
 }

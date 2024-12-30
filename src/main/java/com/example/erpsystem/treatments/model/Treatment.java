@@ -25,6 +25,7 @@ public class Treatment { //Uzycie treatment zamiast service z powodu konfliktu z
 
     //konstruktory
 
+
     public Treatment(Long id, String name, String description, LocalTime duration, BigDecimal price) {
         this.id = id;
         this.name = name;
