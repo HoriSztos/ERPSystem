@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista Wyceny</title>
+</head>
+<body>
+<h1>Lista Wyceny</h1>
+
+<!-- Tabela z wycenami -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Koszty Działalności</th>
+        <th>Koszty Pracowników</th>
+        <th>Koszty Wyposażenia</th>
+        <th>Koszty Produktów</th>
+        <th>Koszty Szkoleń</th>
+        <th>Zysk Netto</th>
+        <th>Podatki</th>
+        <th>Roboczogodziny</th>
+        <th>Wartość Roboczogodziny</th>
+        <th>Akcja</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterowanie po liście wycen -->
+    <tr th:each="pricing : ${pricingList}">
+        <td th:text="${pricing.id}"></td>
+        <td th:text="${pricing.businessOperating}"></td>
+        <td th:text="${pricing.employees}"></td>
+        <td th:text="${pricing.equipment}"></td>
+        <td th:text="${pricing.products}"></td>
+        <td th:text="${pricing.training}"></td>
+        <td th:text="${pricing.income}"></td>
+        <td th:text="${pricing.taxes}"></td>
+        <td th:text="${pricing.manHours}"></td>
+        <td th:text="${pricing.manHourValue}"></td>
+        <td>
+            <!-- Przycisk do załadowania wyceny do formularza -->
+            <form th:action="@{/pricing/form/load/{id}(id=${pricing.id})}" method="get">
+                <button type="submit">Wybierz</button>
+            </form>
+            <form th:action="@{'/pricing/delete/' + ${pricing.id}}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirmDelete(this.form)">Usuń</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script th:inline="javascript">
+    function confirmDelete(form) {
+        if (confirm('Czy na pewno chcesz usunąć wizytę?')) {
+            form.submit();
+        }
+        return false;
+    }
+</script>
+
+<!-- Przycisk powrotu do formularza -->
+<a href="/pricing/form">
+    <button>Powrót do Formularza</button>
+</a>
+
+</body>
+</html>

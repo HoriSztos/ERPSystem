@@ -25,7 +25,7 @@ public class CalendarApiController {
         return appointments.stream().map(appointment -> {
             Map<String, Object> event = new HashMap<>();
             event.put("id", appointment.getId());
-            event.put("name", appointment.getName());
+            event.put("title", appointment.getName());
             event.put("start", appointment.getStartTime());
             event.put("end", appointment.getEndTime());
             event.put("description", appointment.getDescription());

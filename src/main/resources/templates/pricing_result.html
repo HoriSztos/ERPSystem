@@ -2,38 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Wynik Wyceny</title>
-  <script>
-    function updateServiceCost() {
-      const manHourValue = parseFloat(document.getElementById("manHourValue").value);
-      const serviceDuration = parseFloat(document.getElementById("serviceDuration").value);
-
-      if (!isNaN(manHourValue) && !isNaN(serviceDuration)) {
-        const serviceCost = manHourValue * serviceDuration;
-        document.getElementById("serviceCost").innerText = serviceCost.toFixed(2);
-      } else {
-        document.getElementById("serviceCost").innerText = "0.00";
-      }
-    }
-  </script>
 </head>
 <body>
 <h1>Wynik Wyceny</h1>
 
+<h2 th:if="${successMessage}" th:text="${successMessage}" style="color: green;"></h2>
+
 <h2>Elementy Wyceny</h2>
 <ul>
-  <li>Koszty działalności: <span th:text="${pricing.businessOperating}"> zł</span></li>
-  <li>Koszty pracowników: <span th:text="${pricing.employees}"> zł</span></li>
-  <li>Koszty wyposażenia: <span th:text="${pricing.equipment}"> zł</span></li>
-  <li>Koszty produktów: <span th:text="${pricing.products}"> zł</span></li>
-  <li>Koszty szkoleń: <span th:text="${pricing.training}"> zł</span></li>
-  <li>Zysk netto: <span th:text="${pricing.income}"> zł</span></li>
-  <li>Podatki: <span th:text="${pricing.taxes}"> zł</span></li>
-  <li>Liczba roboczogodzin: <span th:text="${pricing.manHours}"></span></li>
+  <li>Koszty działalności: <span th:text="${components.businessOperating}"> zł</span></li>
+  <li>Koszty pracowników: <span th:text="${components.employees}"> zł</span></li>
+  <li>Koszty wyposażenia: <span th:text="${components.equipment}"> zł</span></li>
+  <li>Koszty produktów: <span th:text="${components.products}"> zł</span></li>
+  <li>Koszty szkoleń: <span th:text="${components.training}"> zł</span></li>
+  <li>Zysk netto: <span th:text="${components.income}"> zł</span></li>
+  <li>Podatki: <span th:text="${components.taxes}"> zł</span></li>
+  <li>Liczba roboczogodzin: <span th:text="${components.manHours}"> </span></li>
 </ul>
 
 <h2>Obliczona Wartość Roboczogodziny</h2>
-<p>Wartość roboczogodziny: <span th:text="${manHourValue}"></span> zł</p>
-<input type="hidden" id="manHourValue" th:value="${manHourValue}">
+<p>Wartość roboczogodziny: <span th:text="${manHourValue}"> zł</span></p>
 
 <h2>Obliczenie Kosztu Usługi</h2>
 <form oninput="updateServiceCost()">
@@ -44,17 +32,16 @@
 </form>
 
 <h2>Zapisz Dane</h2>
-<form th:action="@{/pricing/save}" method="post">
+<form th:action="@{/pricing/save}" th:object="${components}" method="post">
   <input type="hidden" name="manHourValue" th:value="${manHourValue}">
-  <input type="hidden" name="businessOperating" th:value="${pricing.businessOperating}">
-  <input type="hidden" name="employees" th:value="${pricing.employees}">
-  <input type="hidden" name="equipment" th:value="${pricing.equipment}">
-  <input type="hidden" name="products" th:value="${pricing.products}">
-  <input type="hidden" name="training" th:value="${pricing.training}">
-  <input type="hidden" name="income" th:value="${pricing.income}">
-  <input type="hidden" name="taxes" th:value="${pricing.taxes}">
-  <input type="hidden" name="manHours" th:value="${pricing.manHours}">
-
+  <input type="hidden" name="businessOperating" th:value="${components.businessOperating}">
+  <input type="hidden" name="employees" th:value="${components.employees}">
+  <input type="hidden" name="equipment" th:value="${components.equipment}">
+  <input type="hidden" name="products" th:value="${components.products}">
+  <input type="hidden" name="training" th:value="${components.training}">
+  <input type="hidden" name="income" th:value="${components.income}">
+  <input type="hidden" name="taxes" th:value="${components.taxes}">
+  <input type="hidden" name="manHours" th:value="${components.manHours}">
   <button type="submit">Zapisz dane wyceny</button>
 </form>
 
