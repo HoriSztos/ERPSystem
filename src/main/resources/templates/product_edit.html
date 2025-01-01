@@ -16,20 +16,24 @@
   <textarea id="description" name="description" th:text="${product.description}"></textarea>
   <br>
 
-  <label for="purchase_price">Cena Zakupu:</label>
-  <input type="number" id="purchase_price" name="purchase_price" step="0.01" th:value="${product.purchase_price}" required>
+  <label for="purchasePrice">Cena Zakupu:</label>
+  <input type="number" id="purchasePrice" name="purchasePrice" step="0.01" th:value="${product.purchasePrice}" required>
   <br>
 
-  <label for="sale_price">Cena Sprzedaży:</label>
-  <input type="number" id="sale_price" name="sale_price" step="0.01" th:value="${product.sale_price}" required>
+  <label for="salePrice">Cena Sprzedaży:</label>
+  <input type="number" id="salePrice" name="salePrice" step="0.01" th:value="${product.salePrice}" required>
   <br>
 
   <label for="stock">Ilość:</label>
   <input type="number" id="stock" name="stock" th:value="${product.stock}" required>
   <br>
 
-  <label for="expiration_date">Data Ważności:</label>
-  <input type="date" id="expiration_date" name="expiration_date" th:value="${product.expiration_date}">
+  <label for="minimalStock">Minimalna ilość:</label>
+  <input type="number" id="minimalStock" name="minimalStock" th:value="${product.minimalStock}" min="0" >
+  <br>
+
+  <label for="expirationDate">Data Ważności:</label>
+  <input type="date" id="expirationDate" name="expirationDate" th:value="${product.expirationDate}">
   <br>
 
   <button type="submit">Zapisz Zmiany</button>

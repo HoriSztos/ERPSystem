@@ -1,8 +1,10 @@
 package com.example.erpsystem.inventory;
 
+import com.example.erpsystem.inventory.model.Product;
 import com.example.erpsystem.inventory.repository.ProductRepository;
 import com.example.erpsystem.inventory.service.ProductService;
-import com.example.erpsystem.inventory.model.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/inventory") // This maps all requests to /inventory
+@RequestMapping("/inventory")
 public class InventoryController {
 
     @Autowired
@@ -20,18 +22,23 @@ public class InventoryController {
     @Autowired
     private ProductRepository productRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(InventoryController.class);
+
     @GetMapping
     public String getInventory(
             @RequestParam(value = "search", required = false) String search,
             @RequestParam(value = "sortByStock", required = false, defaultValue = "false") boolean sortByStock,
-            Model model) {
+            @RequestParam(value = "sortByDate", required = false, defaultValue = "false") boolean sortByDate,
+    Model model) {
 
         List<Product> products;
         if (search != null && !search.isEmpty()) {
             products = productService.searchProductsByName(search);
         } else if (sortByStock) {
             products = productService.getAllProductsSortedByStock();
-        } else {
+        } else if (sortByDate) {
+            products=productService.getAllProductsSortedByDate();
+        }else {
             products = productService.getAllProducts();
         }
 

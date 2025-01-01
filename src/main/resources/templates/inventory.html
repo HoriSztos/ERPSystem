@@ -11,13 +11,13 @@
 <ul>
     <li th:if="${expiringProducts.isEmpty()}">Brak produktów z krótkim terminem ważności.</li>
     <li th:each="product : ${expiringProducts}">
-        Produkt <span th:text="${product.name}"></span> straci ważność <span th:text="${product.expiration_date}"></span>.
+        Produkt <span th:text="${product.name}"></span> straci ważność <span th:text="${product.expirationDate}"></span>.
     </li>
 </ul>
 <ul>
     <li th:if="${lowStockProducts.isEmpty()}">Brak produktów o niskim stanie magazynowym.</li>
     <li th:each="product : ${lowStockProducts}">
-        Produkt <span th:text="${product.name}"></span> ma ilość <span th:text="${product.stock}"></span>, co jest poniżej minimum (<span th:text="${product.minimumStock}"></span>).
+        Produkt <span th:text="${product.name}"></span> ma ilość mniejszą niż minimalna.
     </li>
 </ul>
 
@@ -35,30 +35,33 @@
     <form th:action="@{/inventory}" method="get">
         <button type="submit" name="sortByStock" value="true">Sortuj po ilości</button>
     </form>
+    <form th:action="@{/inventory}" method="get">
+        <button type="submit" name="sortByDate" value="true">Sortuj po dacie ważności</button>
+    </form>
 </div>
 
 <table border="1">
     <thead>
     <tr>
-        <th>ID</th>
         <th>Nazwa</th>
         <th>Opis</th>
         <th>Cena Zakupu</th>
         <th>Cena Sprzedaży</th>
         <th>Ilość</th>
+        <th> Minimalna Ilość</th>
         <th>Data Ważności</th>
         <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="product : ${products}">
-        <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>
         <td th:text="${product.description}"></td>
-        <td th:text="${product.purchase_price}"></td>
-        <td th:text="${product.sale_price}"></td>
+        <td th:text="${product.purchasePrice}"></td>
+        <td th:text="${product.salePrice}"></td>
         <td th:text="${product.stock}"></td>
-        <td th:text="${product.expiration_date}"></td>
+        <td th:text="${product.minimalStock}"></td>
+        <td th:text="${product.expirationDate}"></td>
         <td>
             <a th:href="@{'/inventory/edit/' + ${product.id}}">Edytuj</a> |
             <a th:href="@{'/inventory/delete/' + ${product.id}}">Usuń</a>

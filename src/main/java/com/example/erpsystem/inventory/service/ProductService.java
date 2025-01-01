@@ -27,9 +27,7 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public Product saveProduct(Product product) {
-        return productRepository.save(product);
-    }
+    public void saveProduct(Product product) {productRepository.save(product);}
 
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
@@ -42,7 +40,7 @@ public class ProductService {
     }
 
     public List<Product> getProductsBelowMinimumStock() {
-        return productRepository.findByStockLessThanMinimumStock();
+        return productRepository.findByStockLessThanMinimalStock();
     }
 
     public List<Product> getAllProductsSortedByStock() {
@@ -52,4 +50,9 @@ public class ProductService {
     public List<Product> searchProductsByName(String name) {
         return productRepository.findByNameContainingIgnoreCase(name);
     }
+
+    public List<Product> getAllProductsSortedByDate() {return productRepository.findAllByOrderByExpirationDateAsc();
+    }
+
+
 }

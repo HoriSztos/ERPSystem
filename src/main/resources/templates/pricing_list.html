@@ -10,7 +10,6 @@
 <table border="1">
     <thead>
     <tr>
-        <th>ID</th>
         <th>Koszty Działalności</th>
         <th>Koszty Pracowników</th>
         <th>Koszty Wyposażenia</th>
@@ -26,7 +25,6 @@
     <tbody>
     <!-- Iterowanie po liście wycen -->
     <tr th:each="pricing : ${pricingList}">
-        <td th:text="${pricing.id}"></td>
         <td th:text="${pricing.businessOperating}"></td>
         <td th:text="${pricing.employees}"></td>
         <td th:text="${pricing.equipment}"></td>

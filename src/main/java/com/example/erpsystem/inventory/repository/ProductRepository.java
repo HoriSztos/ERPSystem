@@ -13,10 +13,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByExpirationDateBetween(LocalDate startDate, LocalDate endDate);
 
     // Produkty poniżej minimalnego stanu magazynowego
-    @Query("SELECT p FROM Product p WHERE p.stock < p.minimumStock")
-    List<Product> findByStockLessThanMinimumStock();
+    @Query("SELECT p FROM Product p WHERE p.stock < p.minimalStock")
+    List<Product> findByStockLessThanMinimalStock();
 
     // Produkty wyszukiwane po nazwie
     List<Product> findByNameContainingIgnoreCase(String name);
-
+    //propdukty sortowane po dacie ważności
+    List<Product> findAllByOrderByExpirationDateAsc();
 }

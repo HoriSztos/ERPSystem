@@ -18,10 +18,10 @@ public class Product {
     private String description;
 
     @Column(name="purchase_price")
-    private float purchase_price;
+    private float purchasePrice;
 
     @Column(name="sale_price")
-    private float sale_price;
+    private float salePrice;
 
     @Column(name="stock")
     private int stock;
@@ -29,20 +29,20 @@ public class Product {
     @Column(name="expiration_date")
     private LocalDate expirationDate;
 
-    @Column(name = "minimum_stock")
-    private int minimumStock;
+    @Column(name = "minimal_stock", nullable = false)
+    private int minimalStock;
 
 
     //konstruktory
-    public Product(Long id, String name, String description, float purchase_price, float sale_price, int stock, LocalDate expiration_date, int minimumStock) {
+    public Product(Long id, String name, String description, float purchasePrice, float salePrice, int stock, LocalDate expirationDate, int minimalStock) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.purchase_price = purchase_price;
-        this.sale_price = sale_price;
+        this.purchasePrice = purchasePrice;
+        this.salePrice = salePrice;
         this.stock = stock;
-        this.expirationDate = expiration_date;
-        this.minimumStock = minimumStock;
+        this.expirationDate = expirationDate;
+        this.minimalStock = minimalStock;
     }
 
     public Product() {
@@ -62,21 +62,21 @@ public class Product {
         return description;
     }
 
-    public float getPurchase_price() {
-        return purchase_price;
+    public float getPurchasePrice() {
+        return purchasePrice;
     }
 
-    public float getSale_price() {
-        return sale_price;
+    public float getSalePrice() {
+        return salePrice;
     }
 
     public int getStock() {
         return stock;
     }
 
-    public LocalDate getExpiration_date() {return expirationDate;}
+    public LocalDate getExpirationDate() {return expirationDate;}
 
-    public int getMinimumStock() { return minimumStock; }
+    public int getMinimalStock() { return minimalStock; }
 
     //settery
 
@@ -92,20 +92,20 @@ public class Product {
         this.description = description;
     }
 
-    public void setPurchase_price(float purchase_price) {
-        this.purchase_price = purchase_price;
+    public void setPurchasePrice(float purchasePrice) {
+        this.purchasePrice = purchasePrice;
     }
 
-    public void setSale_price(float sale_price) {
-        this.sale_price = sale_price;
+    public void setSalePrice(float salePrice) {
+        this.salePrice = salePrice;
     }
 
     public void setStock(int stock) {
         this.stock = stock;
     }
 
-    public void setExpiration_date(LocalDate expiration_date) {this.expirationDate = expiration_date;}
+    public void setExpirationDate(LocalDate expirationDate) {this.expirationDate = expirationDate;}
 
-    public void setMinimumStock(int minimumStock) { this.minimumStock = minimumStock;}
+    public void setMinimalStock(int minimalStock) { this.minimalStock = minimalStock;}
 
 }
