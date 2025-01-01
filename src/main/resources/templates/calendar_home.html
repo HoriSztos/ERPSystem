@@ -6,6 +6,16 @@
     <title>Kalendarz Wizyt</title>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
+    <style>
+        #calendar {
+            height: 80vh;
+            width: 90vw;
+            margin: 20px auto;
+        }
+        .fc-event {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <h1>Kalendarz Wizyt</h1>
@@ -15,17 +25,11 @@
         <button>Powrót do strony głównej</button>
     </a>
 </div>
+<a href="/calendar/add">
+    <button>Dodaj Nową Wizytę</button>
+</a>
 
-<style>
-    #calendar {
-        height: 80vh;
-        width: 90vw;
-        margin: 20px auto;
-    }
-    .fc-event {
-        cursor: pointer;
-    }
-</style>
+
 
 <div id="calendar"></div>
 
@@ -42,7 +46,7 @@
     </thead>
     <tbody>
     <tr th:each="appointment : ${appointments}">
-        <td th:text="${appointment.startTime} + ' - ' + ${appointment.endTime}"></td>
+        <td th:text="${appointment.formattedTime}"></td>
         <td th:text="${appointment.name}"></td>
         <td th:text="${appointment.description}"></td>
         <td th:text="${appointment.client}"></td>
@@ -56,9 +60,7 @@
     </tbody>
 </table>
 
-<a href="/calendar/add">
-    <button>Dodaj Nową Wizytę</button>
-</a>
+
 
 <script th:inline="javascript">
     function confirmDelete(form) {

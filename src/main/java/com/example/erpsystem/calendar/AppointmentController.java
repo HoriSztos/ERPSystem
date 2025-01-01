@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -30,6 +31,15 @@ public class AppointmentController {
         LocalDateTime endOfMonth = now.plusMonths(1).withDayOfMonth(1).withHour(0).withMinute(0);
 
         List<Appointment> appointments = appointmentService.getAppointmentsInRange(startOfMonth, endOfMonth);
+        //formatowanie godzin i daty w liście
+        appointments.forEach(appointment -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String formattedTime = appointment.getStartTime().format(formatter) + " - " + appointment.getEndTime().format(formatter);
+            String formattedDate = appointment.getStartTime().format(dateFormatter);
+            appointment.setFormattedTime(formattedTime + " " + formattedDate);
+
+        });
         model.addAttribute("appointments", appointments);
         return "calendar_home";
     }

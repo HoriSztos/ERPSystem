@@ -30,9 +30,10 @@ public class Appointment {
     private String client;
 
     @ManyToOne
-    @JoinColumn(name = "treatment_id", nullable = false)
+    @JoinColumn(name = "treatment_id")
     private Treatment treatment;
 
+    private String formattedTime;
 
     //gettery
 
@@ -61,6 +62,9 @@ public class Appointment {
     }
     public Treatment getTreatment() {
         return treatment;
+    }
+    public String getFormattedTime() {
+        return formattedTime;
     }
 
     //settery
@@ -91,6 +95,9 @@ public class Appointment {
 
     public void setTreatment(Treatment treatment) {
         this.treatment = treatment;
+    }
+    public void setFormattedTime(String formattedTime) {
+        this.formattedTime = formattedTime;
     }
 
     //konstruktory
