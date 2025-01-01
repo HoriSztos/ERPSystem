@@ -1,5 +1,6 @@
-package com.example.erpsystem.login;
+package com.example.erpsystem.login.repository;
 
+import com.example.erpsystem.login.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

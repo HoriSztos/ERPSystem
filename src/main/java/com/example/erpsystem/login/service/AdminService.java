@@ -1,5 +1,7 @@
-package com.example.erpsystem.login;
+package com.example.erpsystem.login.service;
 
+import com.example.erpsystem.login.repository.UserRepository;
+import com.example.erpsystem.login.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

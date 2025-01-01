@@ -1,4 +1,4 @@
-package com.example.erpsystem.login;
+package com.example.erpsystem.login.model;
 
 import jakarta.persistence.*;
 
