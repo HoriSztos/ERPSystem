@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create User</title>
+    <title>Stwórz użytkownika</title>
 </head>
 <body>
 <h1>Create User</h1>
-<form action="#" th:action="@{/createUser}" method="post">
-    <label for="username">Username:</label>
+<form th:action="@{/admin/createUser}" method="post">
+    <label for="username">Nazwa:</label>
     <input type="text" id="username" name="username" required>
-    <label for="password">Password:</label>
+    <label for="password">Hasło:</label>
     <input type="password" id="password" name="password" required>
-    <label for="role">Role:</label>
+    <label for="role">Rola:</label>
     <select id="role" name="role" required>
         <option value="USER">USER</option>
         <option value="ADMIN">ADMIN</option>
     </select>
-    <button type="submit">Create User</button>
+    <button type="submit">Stwórz użytkownika</button>
 </form>
 </body>
 </html>

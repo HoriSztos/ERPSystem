@@ -17,6 +17,10 @@
     <li><a href="/inventory">Magazyn </a></li>
     <li><a href="/calendar">Kalendarz </a></li>
     <li><a href="/treatments">Usługi</a></li>
+    <!-- Wyświetlenie przycisku tylko dla administratora -->
+    <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+      <a href="/admin/createUser">Dodaj użytkownika</a>
+    </li>
   </ul>
 </nav>
 

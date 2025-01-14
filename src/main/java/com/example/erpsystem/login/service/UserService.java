@@ -1,5 +1,6 @@
 package com.example.erpsystem.login.service;
 
+import com.example.erpsystem.login.model.Role;
 import com.example.erpsystem.login.repository.UserRepository;
 import com.example.erpsystem.login.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,15 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void createUser(String username, String password, String roleName) {
-        if (roleName == null) {
-            throw new RuntimeException("Role '" + roleName + "' not found!");
+    public void createUser(String username, String password, Role role) {
+        if (role == null) {
+            throw new RuntimeException("Role '" + role + "' not found!");
         }
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
-        user.setRole(roleName);
+        user.setRole(role);
 
         userRepository.save(user);
     }

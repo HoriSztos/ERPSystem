@@ -1,7 +1,7 @@
-package com.example.erpsystem.login.security;
+package com.example.erpsystem.login.service;
 
-import com.example.erpsystem.login.repository.UserRepository;
 import com.example.erpsystem.login.model.User;
+import com.example.erpsystem.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,15 +16,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByNameNative(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        // Pobranie użytkownika z bazy danych
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
 
-        //String roleName = (user.getRole() != null) ? user.getRole() : "USER";
-
+        // Tworzenie instancji UserDetails
         return org.springframework.security.core.userdetails.User
-                .withUsername(username)
-                .password(user.getPassword()) // Hasło użytkownika pobierane z bazy danych.
-                .roles(user.getRole())
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole().name())
                 .build();
     }
 }

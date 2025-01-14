@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>User Created</title>
+  <title>Dodano użytkownika</title>
 </head>
 <body>
-<h1>User Successfully Created</h1>
-<p>Username: <span th:text="${username}"></span></p>
-<p>Role: <span th:text="${role}"></span></p>
+<h1>Nowy uytkownik został pomyślnie dodany!</h1>
+<p>Nazwa użytkownika: <span th:text="${username}"></span></p>
+<p>Rola: <span th:text="${role}"></span></p>
 
-<form action="#" th:action="@{/createUser}" method="get">
-  <button type="submit">Create Another User</button>
+<form th:action="@{/admin/createUser}" method="get">
+  <button type="submit">Stwórz nowego użytkownika</button>
 </form>
 </body>
 </html>

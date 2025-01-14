@@ -2,10 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Financial Module - Add Transaction</title>
+    <script>
+        function adjustAmount() {
+            const typeElement = document.getElementById("type");
+            const amountElement = document.getElementById("amount");
+
+            if (typeElement.value === "wydatek" && amountElement.value > 0) {
+                // Dodaj minus, jeśli typ to wydatek i kwota jest dodatnia
+                amountElement.value = -Math.abs(amountElement.value);
+            } else if (typeElement.value === "przychod" && amountElement.value < 0) {
+                // Usuń minus, jeśli typ to przychód i kwota jest ujemna
+                amountElement.value = Math.abs(amountElement.value);
+            }
+        }
+    </script>
 </head>
 <body>
 <h1>Dodaj nową transakcję</h1>
-<form th:action="@{/finance/add}" method="post">
+<form th:action="@{/finance/add}" method="post" onsubmit="adjustAmount()">
     <label for="date">Data</label>
     <input type="date" id="date" name="date" th:value="${transaction.date}" required>
     <br>

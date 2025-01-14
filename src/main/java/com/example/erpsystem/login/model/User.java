@@ -15,16 +15,16 @@ public class User {
 
     @Column(name = "password")
     private String password;
-
-    @Column(name="role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
 
 //konstruktory
 
     public User() {
     }
 
-    public User(Long id_user, String username, String password, String role) {
+    public User(Long id_user, String username, String password, Role role) {
         this.id_user = id_user;
         this.username = username;
         this.password = password;
@@ -45,11 +45,9 @@ public class User {
         return password;
     }
 
-    public String getRole() {
-        return role;
-    }
+    public Role getRole() { return role; }
 
-    //settery
+//settery
 
     public void setId_user(Long id_user) {
         this.id_user = id_user;
@@ -63,7 +61,7 @@ public class User {
         this.password = password;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
