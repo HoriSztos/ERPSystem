@@ -1,6 +1,5 @@
 package com.example.erpsystem.login.security;
 
-import com.example.erpsystem.login.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

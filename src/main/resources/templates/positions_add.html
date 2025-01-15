@@ -2,22 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Dodaj Stanowisko</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-<h1>Dodaj Stanowisko</h1>
-<form th:action="@{/hr/positions/add}" method="post" th:object="${position}">
-  <label for="name">Nazwa Stanowiska:</label>
-  <input type="text" id="name" name="name" th:text="${position.name}" required>
-  <br>
+<body class="bg-light">
+<h1 class="text-center mt-5">Dodaj Stanowisko</h1>
+<form th:action="@{/hr/positions/add}" method="post" th:object="${position}" class="bg-white p-4 shadow-sm rounded">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nazwa Stanowiska:</label>
+    <input type="text" id="name" name="name" th:text="${position.name}" class="form-control" required>
+  </div>
 
-  <label for="description">Opis Stanowiska:</label>
-  <textarea id="description" name="description" th:text="${position.description}"></textarea>
-  <br>
+  <div class="mb-3">
+    <label for="description" class="form-label">Opis Stanowiska:</label>
+    <textarea id="description" name="description" th:text="${position.description}" class="form-control"></textarea>
+  </div>
 
-  <button type="submit">Dodaj Stanowisko</button>
+  <button type="submit" class="btn btn-primary w-100">Dodaj Stanowisko</button>
 </form>
-<a href="/hr/positions">
-  <button>Anuluj</button>
-</a>
+<a href="/hr/positions" class="btn btn-outline-secondary w-100 mt-3">Anuluj</a>
 </body>
 </html>

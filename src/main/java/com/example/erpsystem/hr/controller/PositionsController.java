@@ -1,6 +1,7 @@
 package com.example.erpsystem.hr.controller;
 
 import com.example.erpsystem.hr.model.Position;
+import com.example.erpsystem.hr.service.EmployeeService;
 import com.example.erpsystem.hr.service.PositionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,11 @@ import java.util.List;
 public class PositionsController {
 
     private final PositionService positionService;
+    private final EmployeeService employeeService;
 
-    public PositionsController(PositionService positionService) {
+    public PositionsController(PositionService positionService, EmployeeService employeeService) {
         this.positionService = positionService;
+        this.employeeService = employeeService;
     }
 
     // 1. Wyświetlenie listy stanowisk
@@ -58,7 +61,17 @@ public class PositionsController {
     // 6. Usunięcie stanowiska
     @PostMapping("/delete/{id}")
     public String deletePosition(@PathVariable Long id) {
-        positionService.deletePosition(id);
-        return "redirect:/hr/positions";
+        try {
+            // Zaktualizowanie pracowników, aby usunąć powiązanie z pozycją
+            employeeService.updateEmployeesPosition(id);
+
+            // Usunięcie pozycji
+            positionService.deletePosition(id);
+            return "redirect:/hr/positions"; // Przekierowanie na stronę z listą pozycji
+        } catch (Exception e) {
+            e.printStackTrace(); // Dla debugowania
+            return "error"; // Strona błędu
+        }
     }
+
 }

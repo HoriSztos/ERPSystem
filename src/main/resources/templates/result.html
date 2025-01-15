@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Dodano użytkownika</title>
+  <title>Wyniki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-<h1>Nowy uytkownik został pomyślnie dodany!</h1>
-<p>Nazwa użytkownika: <span th:text="${username}"></span></p>
-<p>Rola: <span th:text="${role}"></span></p>
+<body class="bg-light">
+<div class="container mt-5">
+  <h1 class="display-4 text-center mb-4">Wyniki</h1>
 
-<form th:action="@{/admin/createUser}" method="get">
-  <button type="submit">Stwórz nowego użytkownika</button>
-</form>
+  <h2 class="h4">Podsumowanie</h2>
+  <div class="mb-3">
+    <p><strong>Całkowity koszt: </strong><span th:text="${totalCost}"></span></p>
+    <p><strong>Całkowity zysk: </strong><span th:text="${totalProfit}"></span></p>
+  </div>
+
+  <h2 class="h4">Szczegóły</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Nazwa</th>
+      <th>Opis</th>
+      <th>Cena Zakupu</th>
+      <th>Cena Sprzedaży</th>
+      <th>Ilość</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+      <td th:text="${item.name}"></td>
+      <td th:text="${item.description}"></td>
+      <td th:text="${item.purchasePrice}"></td>
+      <td th:text="${item.salePrice}"></td>
+      <td th:text="${item.stock}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a href="/dashboard" class="btn btn-outline-secondary w-100 mt-3">Powrót do strony głównej</a>
+</div>
 </body>
 </html>

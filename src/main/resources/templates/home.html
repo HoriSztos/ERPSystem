@@ -5,19 +5,20 @@
   <title>ERP System - Home</title>
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
-<body>
+<body class="bg-light">
 
-<header>
-  <h1>Witamy w systemie ERP</h1>
-  <p>Proszę się zalogować, aby uzyskać dostęp do swojego konta.</p>
+<header class="bg-primary text-white p-4">
+  <div class="container">
+    <h1 class="display-4">Witamy w systemie ERP</h1>
+    <p>Proszę się zalogować, aby uzyskać dostęp do swojego konta.</p>
+  </div>
 </header>
 
-<main>
-  <!-- Przycisk logowania, który przekierowuje użytkownika do strony logowania -->
-  <a th:href="@{/login}" class="button">Zaloguj się</a>
+<main class="container mt-5 text-center">
+  <a th:href="@{/login}" class="btn btn-primary btn-lg">Zaloguj się</a>
 </main>
 
-<footer>
+<footer class="text-center mt-5">
   <p>&copy; 2024 ERP System. Wszystkie prawa zastrzeżone.</p>
 </footer>
 

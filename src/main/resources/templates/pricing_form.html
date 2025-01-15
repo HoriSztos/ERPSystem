@@ -2,59 +2,61 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Wycena Usług</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-<h1>Formularz Wyceny Usług</h1>
+<body class="bg-light">
+<h1 class="text-center mt-5">Formularz Wyceny Usług</h1>
 
 <!-- Przycisk przekierowujący na listę rekordów -->
-<a href="/pricing/list">
-  <button type="button">Przejdź do listy zapisanych wycen</button>
-</a>
+<a href="/pricing/list" class="btn btn-primary mb-4">Przejdź do listy zapisanych wycen</a>
 <hr>
 
 <!-- Formularz edycji lub dodawania danych -->
-<form th:action="@{/pricing/calculate}" th:object="${components}" method="post">
+<form th:action="@{/pricing/calculate}" th:object="${components}" method="post" class="bg-white p-4 shadow-sm rounded">
   <fieldset>
     <legend>Elementy Wyceny</legend>
-    <label for="businessOperating">Koszty działalności gospodarczej:</label>
-    <input type="number" id="businessOperating" name="businessOperating" step="0.01" th:value="*{businessOperating}" required>
-    <br>
-
-    <label for="employees">Koszty pracowników:</label>
-    <input type="number" id="employees" name="employees" step="0.01" th:value="*{employees}" required>
-    <br>
-
-    <label for="equipment">Koszty wyposażenia:</label>
-    <input type="number" id="equipment" name="equipment" step="0.01" th:value="*{equipment}" required>
-    <br>
-
-    <label for="products">Koszty produktów:</label>
-    <input type="number" id="products" name="products" step="0.01" th:value="*{products}" required>
-    <br>
-
-    <label for="training">Koszty szkoleń:</label>
-    <input type="number" id="training" name="training" step="0.01" th:value="*{training}" required>
-    <br>
-
-    <label for="income">Zysk netto:</label>
-    <input type="number" id="income" name="income" step="0.01" th:value="*{income}" required>
-    <br>
-
-    <label for="taxes">Podatki:</label>
-    <input type="number" id="taxes" name="taxes" step="0.01" th:value="*{taxes}" required>
+    <div class="mb-3">
+      <label for="businessOperating" class="form-label">Koszty działalności gospodarczej:</label>
+      <input type="number" id="businessOperating" name="businessOperating" class="form-control" step="0.01" th:value="*{businessOperating}" required>
+    </div>
+    <div class="mb-3">
+      <label for="employees" class="form-label">Koszty pracowników:</label>
+      <input type="number" id="employees" name="employees" class="form-control" step="0.01" th:value="*{employees}" required>
+    </div>
+    <div class="mb-3">
+      <label for="equipment" class="form-label">Koszty wyposażenia:</label>
+      <input type="number" id="equipment" name="equipment" class="form-control" step="0.01" th:value="*{equipment}" required>
+    </div>
+    <div class="mb-3">
+      <label for="products" class="form-label">Koszty produktów:</label>
+      <input type="number" id="products" name="products" class="form-control" step="0.01" th:value="*{products}" required>
+    </div>
+    <div class="mb-3">
+      <label for="training" class="form-label">Koszty szkoleń:</label>
+      <input type="number" id="training" name="training" class="form-control" step="0.01" th:value="*{training}" required>
+    </div>
+    <div class="mb-3">
+      <label for="income" class="form-label">Zysk netto:</label>
+      <input type="number" id="income" name="income" class="form-control" step="0.01" th:value="*{income}" required>
+    </div>
+    <div class="mb-3">
+      <label for="taxes" class="form-label">Podatki:</label>
+      <input type="number" id="taxes" name="taxes" class="form-control" step="0.01" th:value="*{taxes}" required>
+    </div>
   </fieldset>
 
   <fieldset>
     <legend>Dane Wyceny</legend>
-    <label for="manHours">Liczba roboczogodzin:</label>
-    <input type="number" id="manHours" name="manHours" th:value="*{manHours}" required>
+    <div class="mb-3">
+      <label for="manHours" class="form-label">Liczba roboczogodzin:</label>
+      <input type="number" id="manHours" name="manHours" class="form-control" th:value="*{manHours}" required>
+    </div>
   </fieldset>
 
-  <button type="submit">Stwórz wycenę</button>
+  <button type="submit" class="btn btn-primary w-100">Stwórz wycenę</button>
 </form>
 
-<a href="/dashboard">
-  <button>Powrót</button>
-</a>
+<a href="/dashboard" class="btn btn-outline-secondary w-100 mt-3">Powrót</a>
 </body>
 </html>

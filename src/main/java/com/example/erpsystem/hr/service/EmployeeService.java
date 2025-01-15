@@ -29,4 +29,12 @@ public class EmployeeService {
     public void deleteEmployee(Long id){
         employeeRepository.deleteById(id);
     }
+
+    public void updateEmployeesPosition(Long positionId) {
+        List<Employee> employees = employeeRepository.findByPositionId(positionId);
+        for (Employee employee : employees) {
+            employee.setPosition(null);
+        }
+        employeeRepository.saveAll(employees);
+    }
 }

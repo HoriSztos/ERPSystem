@@ -1,4 +1,4 @@
-package com.example.erpsystem.login.service;
+package com.example.erpsystem.login.security;
 
 import com.example.erpsystem.login.model.User;
 import com.example.erpsystem.login.repository.UserRepository;

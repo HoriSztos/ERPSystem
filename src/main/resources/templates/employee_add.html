@@ -2,44 +2,65 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dodaj Pracownika</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-<h1>Dodaj Pracownika</h1>
-<form th:action="@{/hr/employees/add}" method="post">
-    <label for="name">Imię:</label>
-    <input type="text" id="name" name="name" required>
-    <br>
+<body class="bg-light">
+<div class="container mt-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h1 class="display-4">Dodaj Pracownika</h1>
+        </div>
+    </div>
 
-    <label for="surname">Nazwisko:</label>
-    <input type="text" id="surname" name="surname" required>
-    <br>
+    <!-- Form -->
+    <form th:action="@{/hr/employees/add}" method="post" class="bg-white p-4 shadow-sm rounded">
+        <!-- Ukryte pole dla ID -->
+        <input type="hidden" id="id" name="id" th:value="${employee.id}">
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
+        <div class="mb-3">
+            <label for="name" class="form-label">Imię:</label>
+            <input type="text" id="name" name="name" class="form-control" th:value="${employee.name}" required>
+        </div>
 
-    <label for="phone_number">Telefon:</label>
-    <input type="text" id="phone_number" name="phone_number" required>
-    <br>
+        <div class="mb-3">
+            <label for="surname" class="form-label">Nazwisko:</label>
+            <input type="text" id="surname" name="surname" class="form-control" th:value="${employee.surname}" required>
+        </div>
 
-    <label for="position">Stanowisko:</label>
-    <select id="position" name="position.id" required>
-        <option th:each="position : ${positions}" th:value="${position.id}" th:text="${position.name}"></option>
-    </select>
-    <br>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail:</label>
+            <input type="email" id="email" name="email" class="form-control" th:value="${employee.email}" required>
+        </div>
 
-    <label for="date_of_employment">Data Zatrudnienia:</label>
-    <input type="date" id="date_of_employment" name="date_of_employment" required>
-    <br>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Telefon:</label>
+            <input type="tel" id="phone" name="phone_number" class="form-control" th:value="${employee.phone_number}" required>
+        </div>
 
-    <label for="salary">Wynagrodzenie:</label>
-    <input type="number" id="salary" name="salary" step="0.01" required>
-    <br>
+        <div class="mb-3">
+            <label for="date_of_employment" class="form-label">Data zatrudnienia:</label>
+            <input type="date" id="date_of_employment" name="date_of_employment" class="form-control" th:value="${employee.date_of_employment}" required>
+        </div>
 
-    <button type="submit">Dodaj Pracownika</button>
-</form>
-<a href="/hr/employees">
-    <button>Anuluj</button>
-</a>
+        <div class="mb-3">
+            <label for="salary" class="form-label">Wynagrodzenie:</label>
+            <input type="number" id="salary" name="salary" class="form-control" th:value="${employee.salary}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="position" class="form-label">Stanowisko:</label>
+            <select id="position" name="position.id" class="form-select" required>
+                <option th:each="position : ${positions}" th:value="${position.id}" th:text="${position.name}"></option>
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="/hr/employees" class="btn btn-outline-secondary">Powrót</a>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

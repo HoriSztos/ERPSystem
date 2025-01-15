@@ -59,8 +59,10 @@ public class Employee {
         return surname;
     }
 
-    public Position getPosition() {
-        return position;
+    public Position getPosition() {return position;}
+
+    public String getPositionName() {
+        return (position != null) ? position.getName() : "Brak pozycji";
     }
 
     public String getEmail() {
