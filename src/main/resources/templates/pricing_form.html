@@ -7,6 +7,8 @@
 </head>
 <body class="bg-light">
 <h1 class="text-center mt-5">Formularz Wyceny Usług</h1>
+<p class="text-center text-muted">Wypełnij formularz dotyczący kosztów miesięcznych w salonie.</p>
+<p class="text-center text-muted">Szczegółowe informacje dostępne są po najechaniu kursorem na tytuł elementu. </p>
 
 <!-- Przycisk przekierowujący na listę rekordów -->
 <a href="/pricing/list" class="btn btn-primary mb-4">Przejdź do listy zapisanych wycen</a>
@@ -17,31 +19,31 @@
   <fieldset>
     <legend>Elementy Wyceny</legend>
     <div class="mb-3">
-      <label for="businessOperating" class="form-label">Koszty działalności gospodarczej:</label>
+      <label for="businessOperating" class="form-label" data-bs-toggle="tooltip" title="Koszty związane z prowadzeniem działalności gospodarczej, takie jak czynsz, media, reklama, ubezpieczenie czy inne stałe opłaty.">Koszty działalności gospodarczej:</label>
       <input type="number" id="businessOperating" name="businessOperating" class="form-control" step="0.01" th:value="*{businessOperating}" required>
     </div>
     <div class="mb-3">
-      <label for="employees" class="form-label">Koszty pracowników:</label>
+      <label for="employees" class="form-label" data-bs-toggle="tooltip" title="Wynagrodzenia pracowników oraz związane z nimi składki.">Koszty pracowników:</label>
       <input type="number" id="employees" name="employees" class="form-control" step="0.01" th:value="*{employees}" required>
     </div>
     <div class="mb-3">
-      <label for="equipment" class="form-label">Koszty wyposażenia:</label>
+      <label for="equipment" class="form-label" data-bs-toggle="tooltip" title="Koszty zakupu oraz utrzymania sprzętu wykorzystywanego w salonie (wliczając amortyzację sprzętu).">Koszty wyposażenia:</label>
       <input type="number" id="equipment" name="equipment" class="form-control" step="0.01" th:value="*{equipment}" required>
     </div>
     <div class="mb-3">
-      <label for="products" class="form-label">Koszty produktów:</label>
+      <label for="products" class="form-label" data-bs-toggle="tooltip" title="Koszty miesięczne wykorzystywanych produktów (w tym przedmioty jednorazowe).">Koszty produktów:</label>
       <input type="number" id="products" name="products" class="form-control" step="0.01" th:value="*{products}" required>
     </div>
     <div class="mb-3">
-      <label for="training" class="form-label">Koszty szkoleń:</label>
+      <label for="training" class="form-label" data-bs-toggle="tooltip" title="Koszty uczestnictwa w szkoleniach i podnoszenia kwalifikacji (koszty roczne przeliczone na koszty miesięczne).">Koszty szkoleń:</label>
       <input type="number" id="training" name="training" class="form-control" step="0.01" th:value="*{training}" required>
     </div>
     <div class="mb-3">
-      <label for="income" class="form-label">Zysk netto:</label>
+      <label for="income" class="form-label" data-bs-toggle="tooltip" title="Zakładany zysk netto na miesiąc. Najlepiej obliczyć klorzystając z wskaźnika ROE.">Zysk netto:</label>
       <input type="number" id="income" name="income" class="form-control" step="0.01" th:value="*{income}" required>
     </div>
     <div class="mb-3">
-      <label for="taxes" class="form-label">Podatki:</label>
+      <label for="taxes" class="form-label" data-bs-toggle="tooltip" title="Podatki płacone do urzędu skarbowego.">Podatki:</label>
       <input type="number" id="taxes" name="taxes" class="form-control" step="0.01" th:value="*{taxes}" required>
     </div>
   </fieldset>
@@ -49,7 +51,7 @@
   <fieldset>
     <legend>Dane Wyceny</legend>
     <div class="mb-3">
-      <label for="manHours" class="form-label">Liczba roboczogodzin:</label>
+      <label for="manHours" class="form-label" data-bs-toggle="tooltip" title="Liczba godzin pracy w miesiącu.">Liczba roboczogodzin:</label>
       <input type="number" id="manHours" name="manHours" class="form-control" th:value="*{manHours}" required>
     </div>
   </fieldset>
@@ -58,5 +60,13 @@
 </form>
 
 <a href="/dashboard" class="btn btn-outline-secondary w-100 mt-3">Powrót</a>
+
+<script>
+  // Aktywacja tooltipów Bootstrap
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+</script>
 </body>
 </html>
