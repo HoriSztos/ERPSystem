@@ -9,6 +9,7 @@
 <div class="container mt-5">
   <h1 class="display-4 text-center mb-4">Raporty finansowe</h1>
 
+
   <form th:action="@{/finance/reports}" method="get" class="bg-white p-4 shadow-sm rounded">
     <div class="mb-3">
       <label for="period" class="form-label">Wybierz okres czasu:</label>
@@ -42,6 +43,8 @@
   </table>
 
   <a href="/finance" class="btn btn-outline-secondary mt-4">Powrót do finansów</a>
+  <a th:href="@{/finance/reports/pdf(period=${period})}" class="btn btn-success mt-4">Pobierz raport PDF</a>
+
 </div>
 </body>
 </html>
